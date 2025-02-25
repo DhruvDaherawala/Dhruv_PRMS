@@ -15,7 +15,6 @@
 // module.exports = pool;
 
 const mysql = require("mysql2/promise");
-
 // Create a connection pool to reuse connections
 const pool = mysql.createPool({
   host: "b9qb2i6wcb7ru3fkp9ar-mysql.services.clever-cloud.com",
@@ -27,5 +26,4 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
 });
-
 module.exports = pool;

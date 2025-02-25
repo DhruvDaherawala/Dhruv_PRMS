@@ -224,11 +224,9 @@ exports.deleteRenter = async (req, res) => {
   try {
     const renterId = req.params.id;
     const affectedRows = await renterModel.deleteRenter(renterId);
-
     if (affectedRows === 0) {
       return res.status(404).json({ success: false, message: "Renter not found" });
     }
-
     return res.status(200).json({ success: true, message: "Renter deleted successfully" });
   } catch (error) {
     console.error("Error deleting renter:", error);

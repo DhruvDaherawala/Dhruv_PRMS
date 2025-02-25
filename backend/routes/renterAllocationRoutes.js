@@ -2,14 +2,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const pool = require("../config/db");
-
 // Configure Multer (for file uploads)
 const upload = multer({ dest: "uploads/" });
-
-/**
- * GET /api/allocations
- * Fetch all renter allocations
- */
 router.get("/", (req, res) => {
   const query = "SELECT * FROM renter_allocation";
   pool.query(query, (err, results) => {
@@ -20,11 +14,6 @@ router.get("/", (req, res) => {
     return res.json(results);
   });
 });
-
-/**
- * GET /api/allocations/:id
- * Fetch a specific allocation by ID
- */
 router.get("/:id", (req, res) => {
   const allocationId = req.params.id;
   const query = "SELECT * FROM renter_allocation WHERE allocation_id = ?";
@@ -40,11 +29,6 @@ router.get("/:id", (req, res) => {
     return res.json(result[0]);
   });
 });
-
-/**
- * POST /api/allocations
- * Create a new renter allocation (with optional file uploads)
- */
 router.post(
   "/",
   upload.fields([
@@ -92,11 +76,6 @@ router.post(
     }
   }
 );
-
-/**
- * PUT /api/allocations/:id
- * Update an existing renter allocation
- */
 router.put("/:id", (req, res) => {
   const allocationId = req.params.id;
   const { renterId, propertyId, rentAmount, startDate, endDate } = req.body;
@@ -124,11 +103,6 @@ router.put("/:id", (req, res) => {
     }
   );
 });
-
-/**
- * DELETE /api/allocations/:id
- * Delete a renter allocation
- */
 router.delete("/:id", (req, res) => {
   const allocationId = req.params.id;
   const deleteQuery = "DELETE FROM renter_allocation WHERE id = ?";
@@ -144,5 +118,4 @@ router.delete("/:id", (req, res) => {
     return res.status(200).json({ message: "Allocation deleted successfully" });
   });
 });
-
 module.exports = router;

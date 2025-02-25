@@ -73,7 +73,6 @@ async function deleteAllocation(id) {
   const [result] = await db.execute(query, [id]);
   return result.affectedRows > 0;
 }
-
 module.exports = {
   getAllAllocations,
   getAllocationById,

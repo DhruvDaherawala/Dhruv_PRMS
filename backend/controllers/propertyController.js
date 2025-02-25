@@ -1,9 +1,4 @@
 const propertyModel = require("../models/propertyModel");
-
-/**
- * GET all properties
- * Endpoint: GET /api/property
- */
 exports.getAllProperties = async (req, res) => {
   try {
     const properties = await propertyModel.getAllProperties();
@@ -13,11 +8,6 @@ exports.getAllProperties = async (req, res) => {
     return res.status(500).json({ error: "Failed to fetch properties" });
   }
 };
-
-/**
- * POST create a new property
- * Endpoint: POST /api/property
- */
 exports.createProperty = async (req, res) => {
   try {
     // formData is sent as JSON string in req.body
@@ -51,11 +41,6 @@ exports.createProperty = async (req, res) => {
     return res.status(500).json({ error: "Failed to create property" });
   }
 };
-
-/**
- * GET property with children
- * Endpoint: GET /api/property/with-children/:id
- */
 exports.getPropertyWithChildren = async (req, res) => {
   try {
     const { id } = req.params;
@@ -70,11 +55,6 @@ exports.getPropertyWithChildren = async (req, res) => {
     return res.status(500).json({ error: "Database error" });
   }
 };
-
-/**
- * PUT update an existing property
- * Endpoint: PUT /api/property/:id
- */
 exports.updateProperty = async (req, res) => {
   try {
     const propertyId = req.params.id;
@@ -103,11 +83,6 @@ exports.updateProperty = async (req, res) => {
     return res.status(500).json({ error: "Failed to update property" });
   }
 };
-
-/**
- * DELETE a property
- * Endpoint: DELETE /api/property/:id
- */
 exports.deleteProperty = async (req, res) => {
   try {
     const propertyId = req.params.id;

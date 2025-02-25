@@ -46,18 +46,10 @@
 // };
 
 const pool = require("../config/db");
-
-/**
- * GET all renters
- */
 async function getAllRenters() {
   const [rows] = await pool.query("SELECT * FROM renters");
   return rows;
 }
-
-/**
- * POST create a new renter
- */
 async function createRenter(renterData) {
   const {
     renterName,
@@ -98,10 +90,6 @@ async function createRenter(renterData) {
 
   return result.insertId;
 }
-
-/**
- * PUT update an existing renter
- */
 async function updateRenter(renterId, renterData) {
   const {
     renterName,
@@ -133,16 +121,11 @@ async function updateRenter(renterId, renterData) {
 
   return result.affectedRows;
 }
-
-/**
- * DELETE a renter
- */
 async function deleteRenter(renterId) {
   const query = "DELETE FROM renters WHERE id = ?";
   const [result] = await pool.query(query, [renterId]);
   return result.affectedRows;
 }
-
 module.exports = {
   getAllRenters,
   createRenter,

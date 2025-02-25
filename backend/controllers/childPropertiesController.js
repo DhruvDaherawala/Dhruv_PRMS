@@ -1,5 +1,4 @@
 const promisePool = require("../config/db");
-
 exports.getChildProperties = async (req, res) => {
   try {
     const { id } = req.params; // property_id

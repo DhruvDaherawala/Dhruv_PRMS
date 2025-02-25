@@ -5,7 +5,6 @@ const {
     updateAllocation,
     deleteAllocation,
   } = require("../models/renterAllocationModel");
-  
   const multer = require("multer");
   const path = require("path");
   

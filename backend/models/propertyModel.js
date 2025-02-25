@@ -107,18 +107,10 @@
 // };
 
 const pool = require("../config/db");
-
-/**
- * GET all properties
- */
 async function getAllProperties() {
   const [rows] = await pool.query("SELECT * FROM properties");
   return rows;
 }
-
-/**
- * CREATE a new property (with optional child properties)
- */
 async function createProperty(propertyData, childProperties = []) {
   const { propertyName, ownerName, address, documents } = propertyData;
 
